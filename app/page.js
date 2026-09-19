@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import BorderGlow from "./BorderGlow";
+
 function escapeHtml(str) {
   return str
     .replace(/&/g, "&amp;")
@@ -248,27 +249,37 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="page-card">
-            <div className="q-label">Question {p.number}</div>
-            {multiSource && (
-              <div className="source-tag">from photo {p.sourceIndex + 1}</div>
-            )}
-            <div
-              className="problem-block"
-              dangerouslySetInnerHTML={{ __html: escapeHtml(p.problem) }}
-            />
-            <hr className="rule-break" />
-            <div
-              className="solution-block"
-              dangerouslySetInnerHTML={{ __html: escapeHtml(p.solution) }}
-            />
-            {p.answer && (
-              <div className="answer-box">
-                <div className="answer-label">Answer</div>
-                <div dangerouslySetInnerHTML={{ __html: escapeHtml(p.answer) }} />
-              </div>
-            )}
-          </div>
+          <BorderGlow
+            backgroundColor="#FFFDF7"
+            glowColor="177 55 55"
+            colors={["#1F6F6B", "#59BDB6", "#B23A2E"]}
+            borderRadius={3}
+            glowRadius={36}
+            coneSpread={30}
+            edgeSensitivity={30}
+          >
+            <div className="page-card">
+              <div className="q-label">Question {p.number}</div>
+              {multiSource && (
+                <div className="source-tag">from photo {p.sourceIndex + 1}</div>
+              )}
+              <div
+                className="problem-block"
+                dangerouslySetInnerHTML={{ __html: escapeHtml(p.problem) }}
+              />
+              <hr className="rule-break" />
+              <div
+                className="solution-block"
+                dangerouslySetInnerHTML={{ __html: escapeHtml(p.solution) }}
+              />
+              {p.answer && (
+                <div className="answer-box">
+                  <div className="answer-label">Answer</div>
+                  <div dangerouslySetInnerHTML={{ __html: escapeHtml(p.answer) }} />
+                </div>
+              )}
+            </div>
+          </BorderGlow>
 
           {pages.length <= 12 && (
             <div className="dots">
